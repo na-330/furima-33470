@@ -41,7 +41,7 @@
 - belongs_to_active_hash :scheduled_delivery
 - belongs_to :seller, class_name: "User"
 
-## product_purchases(購入) テーブル
+## item_purchases(購入) テーブル
 | Column        | Type    | Options                        |
 | ------------- | ------- | ------------------------------ |
 | product       | references | null: false, foreign_key: true |
