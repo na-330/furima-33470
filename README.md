@@ -2,31 +2,33 @@
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| nickname   | string | null: false, foreign_key: true |
-| email  | string | null: false, foreign_key: true |
-| password  | string | null: false, foreign_key: true |
-| first_name  | string | null: false, foreign_key: true |
-| last_name  | string | null: false, foreign_key: true |
-| birth_date  | date | null: false, foreign_key: true |
+| nickname   | string | null: false |
+| email  | string | null: false |
+| password  | string | null: false |
+| first_name_j  | string | null: false |
+| last_name_j  | string | null: false |
+| first_name_k  | string | null: false |
+| last_name_k  | string | null: false |
+| birth_date  | date | null: false |
 
 ### Association
 - has_many :products
 - has_many :purchases
+- has_many :comments
 
 ## Products(商品)テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| image  | string | null: false, foreign_key: true |
-| name  | string | null: false, foreign_key: true |
-| info  | string | null: false, foreign_key: true |
-| category  | integer | null: false, foreign_key: true |
-| product_status  | string | null: false, foreign_key: true |
-| prefecture | date | null: false, foreign_key: true |
-| delivery_fee  | date | null: false, foreign_key: true |
-| scheduled_delivery  | date | null: false, foreign_key: true |
-| price  | date | null: false, foreign_key: true |
-| user_id  | date | null: false, foreign_key: true |
+| name  | string | null: false |
+| info  | text | null: false |
+| category_id  | null: false, foreign_key: true |
+| product_status_id  |  integer | null: false, foreign_key: true |
+| prefecture_id | null: false, foreign_key: true |
+| delivery_fee_id  | null: false, foreign_key: true |
+| scheduled_delivery_id  | null: false, foreign_key: true |
+| price  | integer | null: false |
+| user_id  | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -42,9 +44,8 @@
 ## product_purchases(購入) テーブル
 | Column        | Type    | Options                        |
 | ------------- | ------- | ------------------------------ |
-| product       | integer | null: false, foreign_key: true |
-| user          | integer | null: false, foreign_key: true |
-| purchase_info | integer | null: false, foreign_key: true |
+| product       | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -57,8 +58,8 @@
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | content | string     | null: false                    |
-| user    | integer    | null: false, foreign_key: true |
-| product | integer    | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -69,7 +70,7 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| postal_code   | string     | null: false                    |
+| postal_code_id | null: false, foreign_key: true |
 | prefectures   | integer    | null: false, foreign_key: true |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
