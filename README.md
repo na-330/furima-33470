@@ -4,7 +4,7 @@
 | ------ | ---------- | ------------------------------ |
 | nickname   | string | null: false |
 | email  | string | null: false |
-| password  | string | null: false |
+| encrypted_password  | string | null: false |
 | first_name_j  | string | null: false |
 | last_name_j  | string | null: false |
 | first_name_k  | string | null: false |
@@ -28,7 +28,7 @@
 | delivery_fee_id  | null: false, foreign_key: true |
 | scheduled_delivery_id  | null: false, foreign_key: true |
 | price  | integer | null: false |
-| user_id  | references | null: false, foreign_key: true |
+| user | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -51,7 +51,7 @@
 
 - belongs_to :user
 - belongs_to :product
-- belongs_to :purchase_info
+- has_one :purchase_info
 
 
 ## comments(コメント) テーブル
@@ -70,13 +70,13 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| postal_code_id | null: false, foreign_key: true |
-| prefectures   | integer    | null: false, foreign_key: true |
+| postal_code_id |  integer | null: false, foreign_key: true |
+| prefectures_id |  integer | null: false, foreign_key: true |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
-| item_purchase | integer    | null: false, foreign_key: true |
+| item_purchase | references | null: false, foreign_key: true |
 
 ### Association
 
