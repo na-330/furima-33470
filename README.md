@@ -13,7 +13,7 @@
 
 ### Association
 - has_many :products
-- has_many :purchases
+- has_many :item_purchases
 - has_many :comments
 
 ## Products(商品)テーブル
