@@ -80,5 +80,5 @@
 
 ### Association
 
-- has_one_active_hash :prefectures
+- belongs_to_active_hash :prefecture
 - belongs_to :item_purchase
