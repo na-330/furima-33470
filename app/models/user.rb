@@ -13,7 +13,6 @@ class User < ApplicationRecord
   # validates :email, {presence: true, with:EMAIL_REGEX, uniqueness: true}
   validates :email, format: {presence: true, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, uniqueness: true }
 
-
   # パスを英数字含める
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates_format_of :password, {presence: true, with: PASSWORD_REGEX}
