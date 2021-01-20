@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-
+  before_action :authenticate_user!, only: [:new, :edit, :update]
+  before_action :set_item, only: [:edit, :update]
   def index
     @items = Item.all.order(created_at: :desc)
   end
@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    move_to_index(@item)
+    # move_to_index(@item)
   end
 
   def update
@@ -43,8 +43,9 @@ class ItemsController < ApplicationController
                                  :scheduled_delivery_id, :numericality, :price).merge(user_id: current_user.id)
   end
 
-  def move_to_index(item)
-    unless current_user.id == item.user.id
+  def set_item
+    @item = Item.find(params[:id])
+    unless current_user.id == @item.user.id
       redirect_to root_path
     end
   end
