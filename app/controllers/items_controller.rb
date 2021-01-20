@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    move_to_index(@prototype)
+    move_to_index(@item)
   end
 
   private
