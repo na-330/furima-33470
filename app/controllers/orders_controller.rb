@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:purchase).permit(:postal_code, :city, :house_number, :building, :phone_number, :prefecture_id, :order_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:purchase).permit(:postal_code, :city, :house_number, :building, :phone_number, :prefecture_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
@@ -34,9 +34,9 @@ class OrdersController < ApplicationController
   end
   
   def move_to_index
-    if user_signed_in? && current_user.id == @item.user_id
+    if current_user.id == @item.user_id
       redirect_to root_path
-    elsif user_signed_in? && current_user.id != @item.user_id && @item.order != nil
+    elsif @item.order != nil
       redirect_to root_path
     end
   end
