@@ -87,13 +87,13 @@ RSpec.describe Purchase, type: :model do
         expect(@purchase.errors.full_messages).to include('Phone number is not a number')
       end
 
-      it "housenumberが空の時" do
+      it "user_idが空の時" do
         @purchase.user_id = nil
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("User can't be blank")
       end
 
-      it "housenumberが空の時" do
+      it "item_idが空の時" do
         @purchase.item_id = nil
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Item can't be blank")
