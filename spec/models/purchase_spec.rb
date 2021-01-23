@@ -79,6 +79,12 @@ RSpec.describe Purchase, type: :model do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Phone number is too short (minimum is 10 characters)")
       end
+
+      it 'phone_numberが数字以外が入ると保存できないこと' do
+        @purchase.phone_number = '2222222222e'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include('Phone number is not a number')
+      end
     end
   end
 end
