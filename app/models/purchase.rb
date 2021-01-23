@@ -9,7 +9,7 @@ class Purchase
     validates :city
     validates :house_number
     validates :phone_number, length: { minimum: 10 }, numericality: { only_integer: true, with: /\A\d{11}\z/ }
-    # validates :token
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 0 }
 
