@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Purchase, type: :model do
   before do
-    @purchase = FactoryBot.build(:purchase)
+    @item = FactoryBot.build(:item)
+    @purchase = FactoryBot.build(:purchase, item_id:@item , user_id:@item )
   end
 
   describe "商品購入情報の保存" do
@@ -84,6 +85,18 @@ RSpec.describe Purchase, type: :model do
         @purchase.phone_number = '2222222222e'
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include('Phone number is not a number')
+      end
+
+      it "housenumberが空の時" do
+        @purchase.user_id = nil
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "housenumberが空の時" do
+        @purchase.item_id = nil
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
